@@ -1,26 +1,19 @@
 package config
 
 import (
-	"Assigment_S2/models"
-
 	"fmt"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-var DB *gorm.DB
+func ConnectionDB() {
 
-func InitDB() {
-	var err error
-
-	DB, err = gorm.Open("mysql", "root:@/orders_by?charset=utf8&parseTime=True&loc=local")
-
+	dsn := "root:@tcp(127.0.0.1:3306)/orders_by?charset=utf8mb4&parseTime=True&loc=Local"
+	_, err := gorm.Open(mysql.Open(dsn))
 	if err != nil {
-		panic("faild to connect database !!")
-	} else {
-		fmt.Println("succes connect to database !!!")
+		panic("DB Connection error")
 	}
 
-	DB.AutoMigrate(&models.Items{})
+	fmt.Println("Database Konek Brooo !!!")
 }

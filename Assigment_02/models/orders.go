@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -9,7 +11,13 @@ type Items struct {
 	item_id       uint
 	item_code     int64
 	description   string
-	quantity      string
+	Quantity      string
 	order_id      uint
-	customer_name string
+	Customer_name string
+	Ordered_at    time.Time
 }
+
+// type itemInput struct {
+// 	Nama_customer string
+// 	Harga         int
+// }
